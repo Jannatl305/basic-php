@@ -87,3 +87,7 @@ $fiesr_object->get_class_info();
     echo "My name is " .$nam. "<br>";
     }
  ?>
+
+ <?php
+echo "Done for today";
+ ?>
