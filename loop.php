@@ -9,4 +9,10 @@ while ($i <= 5) {
     $i++;
 }
 echo "<br>";
+$nomes = ["Moni", "Risha", "Zihad", "Jubayer"];
+
+foreach ($nomes as $name) {
+    echo $name . " ";
+}
+
 ?>
