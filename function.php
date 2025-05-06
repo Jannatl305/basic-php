@@ -19,4 +19,6 @@ define("PI", 3.14159);
 echo PI; 
 echo "The value of PI is: " . PI . "<br>"; 
 echo "The value of PI is: " . constant("PI") . "<br>"; 
+
+echo "". constant("") . rad2deg(0)
 ?>
