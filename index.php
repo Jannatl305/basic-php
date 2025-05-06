@@ -91,3 +91,8 @@ $fiesr_object->get_class_info();
  <?php
 echo "Done for today";
  ?>
+
+ <?php
+ $add = 5;
+ $add += 5;
+ echo $add;
