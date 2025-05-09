@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WooCommerce Peakerr Integration (Fixed)
  * Description: Sends WooCommerce orders to Peakerr using variation quantity as API quantity.
- * Version: 1.8
+ * Version: 1.9
  * Author: JM
  */
 
@@ -22,6 +22,15 @@ function peakerr_custom_checkout_field($checkout) {
     echo '</div>';
 }
 
+// 1b. Validate the custom field
+add_action('woocommerce_checkout_process', 'peakerr_validate_custom_checkout_field');
+function peakerr_validate_custom_checkout_field() {
+    if (empty($_POST['peakerr_profile_url'])) {
+        wc_add_notice(__('Please enter a valid Profile/Post URL.'), 'error');
+    }
+}
+
+// 1c. Save the custom field
 add_action('woocommerce_checkout_update_order_meta', 'peakerr_save_checkout_field');
 function peakerr_save_checkout_field($order_id) {
     if (!empty($_POST['peakerr_profile_url'])) {
@@ -101,13 +110,11 @@ function send_peakerr_order_on_status_change($order_id, $old_status, $new_status
                 continue;
             }
 
-            // Check if quantity is below the minimum threshold (10 in this case)
-            if ($quantity < 10) {  
+            if ($quantity < 10) {
                 $order->add_order_note("❌ Skipped $product_name: Quantity $quantity is below minimum 10.");
                 continue;
             }
 
-            // Send order to Peakerr
             $response = sendOrderToPeakerr($apiKey, $serviceID, $link, $quantity);
             if (!empty($response['order'])) {
                 $peakerr_order_ids[] = $response['order'];
@@ -123,7 +130,7 @@ function send_peakerr_order_on_status_change($order_id, $old_status, $new_status
     }
 }
 
-// 5. Send API request to Peakerr
+// 5. Send API request
 function sendOrderToPeakerr($apiKey, $serviceID, $link, $quantity) {
     $url = 'https://peakerr.com/api/v2';
     $response = wp_remote_post($url, array(
