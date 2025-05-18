@@ -1,0 +1,32 @@
+<?php
+$a = 10;
+$b = 5;
+echo $a + $b;
+echo "<br>";
+echo $a - $b; 
+echo "<br>";
+echo $a * $b; 
+echo "<br>";
+echo $a / $b;
+$m = 10;
+$m += 5; 
+echo $m;
+echo "<br>";
+echo $a * $m;
+echo "<br>";
+echo $a % $m;
+var_dump($a == $b);  
+echo "<br>";
+var_dump($a != $m); 
+echo "<br>";
+var_dump($m > $b);
+echo "<br>";
+var_dump($a < $b);
+echo "<br>";
+$x = true;
+$y = false;
+var_dump($x && $y);
+echo "<br>";
+var_dump($x || $y);
+echo "<br>";
+?>
