@@ -77,7 +77,7 @@ $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <td>
                         <a href="view.php?id=<?php echo $row['id']; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <a href="edit.php?id=<?php echo $row['id']; ?>"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
-                        <a href="delete.php?id=<?php echo $row['id']; ?>"><button class="btn btn-sm">Delete</button></a>
+                        <a href="delete.php?id=<?php echo $row['id']; ?>"><button class="btn btn-sm" onclick="return confirm('Are you sure?')">Delete</button></a>
                     </td>
                     </tr>
                      <?php endforeach; ?>

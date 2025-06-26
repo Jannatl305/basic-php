@@ -3,8 +3,16 @@ include 'config.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $image = $_GET['image']; 
 
+    $sql = "SELECT image FROM eco WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+    
+    if ($result->num_rows>0){
+        $row = mysqli_fetch_assoc($result);
+        $image = $row['image'];
+    }
+
+    
     if (!empty($image) && file_exists($image)) {
         unlink($image); // Delete the old image file
     }
@@ -14,7 +22,7 @@ if (isset($_GET['id'])) {
         header("Location: index.php?msg=deleted");
         exit();
     } else {
-        echo "Error deleting record: " . $conn->error;
+        echo "Error updating record: " . $conn->error;
     }
 } else {
     echo "Invalid request.";

@@ -80,7 +80,7 @@ if (isset($_GET['id'])) {
                     <small class="text-muted">Previously selected file: <?php echo $product['image']; ?></small>
                     <?php endif; ?>
                     <!-- keep old image name for update.php -->
-                    
+                    <input type="hidden" name="old_image" value="<?php echo $product['image']; ?>">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="index.php" class="btn btn-secondary">Cancel</a>
